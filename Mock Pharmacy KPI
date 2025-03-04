@@ -1,1 +1,64 @@
+--This table uses mock data that emulates key performance indicators for a pain management pharmacy. 
+This pharmacy can use this table to analyze and answer questions such as which insurance takes the longest to reimburse and
+which insurances usually require prior authorization.
+  It includes a patient's name, their patient ID, drug name, pain reduction score, success rate, adverse events, 
+their insurance name, if their insurance required prior authorization, if reimbursement was received, reimbursement time,
+and their start date of service.
+
+
+
+--Table Schema:
+Name                       text
+patient_id                 int
+drug_name                  text 
+pain_reduction_score       int
+success_rate               int
+adverse_events             int
+insurance_name             text
+prior_authorization_needed text
+reimbursement_received     text
+reimbursement_time         int
+start_date_of_service      text
+
+
+
+--Create a table for KPI at a pain management pharmacy:
+CREATE TABLE kpi_drug_infusion (
+    Name TEXT,
+    patient_id INTEGER PRIMARY KEY,
+    drug_name TEXT,
+    pain_reduction_score INT,
+    success_rate INT,
+    adverse_events INT,
+    insurance_name TEXT,
+    prior_authorization_needed TEXT,
+    reimbursement_received TEXT,
+    reimbursement_time INT,
+    start_date_of_service  TEXT);
+
+--Display patients that are covered under Aetna. The insurance name can be replaced as needed when using this query.
+SELECT Name, insurance_name 
+    FROM kpi_drug_infusion 
+    WHERE insurance_name = 'Aetna';
+
+--Display patients under Aetna that the pharmacy did not receive reimbursement from. The insurance name can
+also be replaced as needed when using this query.
+SELECT name, insurance_name, reimbursement_received 
+    FROM kpi_drug_infusion 
+    WHERE insurance_name = 'Aetna' 
+    AND reimbursement_received = 'FALSE';
+
+--Display how many patients that the pharmacy received reimbursement from Aetna and how many that they did not.
+SELECT COUNT(*) insurance_name, reimbursement_received 
+    FROM kpi_drug_infusion 
+    WHERE insurance_name = 'Aetna' 
+    GROUP BY reimbursement_received;
+
+
+
+
+
+
+
+
 
