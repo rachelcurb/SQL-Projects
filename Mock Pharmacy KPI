@@ -18,7 +18,7 @@ insurance_name             text
 prior_authorization_needed text
 reimbursement_received     text
 reimbursement_time         int
-start_date_of_service      text
+start_date_of_service      datetime
 
 
 
