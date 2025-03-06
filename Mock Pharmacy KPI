@@ -22,6 +22,16 @@ start_date_of_service      datetime
 
 
 
+**NOTE: For each query below, the name of the insurance (insurance_name) can be replaced with any of the ones listed below:
+Insurance names:
+	'Cigna'
+	'Blue Cross Blue Shield'
+	'Meritain'
+	'United Healthcare'
+	'Aetna'
+	'Humana'
+'Aetna' has been chosen for every example.
+
 --Create a table for KPI at a pain management pharmacy:
 CREATE TABLE kpi_drug_infusion (
     Name TEXT,
@@ -36,13 +46,15 @@ CREATE TABLE kpi_drug_infusion (
     reimbursement_time INT,
     start_date_of_service  DATETIME);
 
---Display patients that are covered under Aetna. The insurance name can be replaced as needed when using this query.
+--Display the names of all health insurances that patients at the pharmacy use
+SELECT DISTINCT insurance_name FROM kpi_drug_infusion;
+
+--Display patients that are covered under Aetna.
 SELECT Name, insurance_name 
     FROM kpi_drug_infusion 
     WHERE insurance_name = 'Aetna';
 
---Display patients under Aetna that the pharmacy did not receive reimbursement from. The insurance name can
-also be replaced as needed when using this query.
+--Display patients under Aetna that the pharmacy did not receive reimbursement from. 
 SELECT name, insurance_name, reimbursement_received 
     FROM kpi_drug_infusion 
     WHERE insurance_name = 'Aetna' 
@@ -56,9 +68,9 @@ SELECT COUNT(*) insurance_name, reimbursement_received
 
 --(Alternative to above?)
 SELECT reimbursement_received, COUNT(*)
-		FROM kpi_drug_infusion
-    WHERE insurance_name = 'Aetna'
-		GROUP BY reimbursement_received;
+	FROM kpi_drug_infusion
+	WHERE insurance_name = 'Aetna'
+	GROUP BY reimbursement_received;
 
 --Display the order of when patients started on service from earliest to latest
  SELECT patient_name, start_date_of_service
@@ -70,9 +82,20 @@ SELECT reimbursement_received, COUNT(*)
    FROM kpi_drug_infusion
    WHERE reimbursement_received = 'True' AND insurance_name = 'Aetna';
 
---Update the table with a new patient.
-NSERT INTO kpi_drug_infusion (patient_name, drug_name, pain_reduction_score, success_rate, adverse_events, insurance_name, prior_authorization_needed, reimbursement_received, reimbursement_time, start_date_of_service)
-VALUES ("Harry Potter", "Morphine", 7, 95, 1, "Cigna", "False", "True", 89, '2024-3-24');
+--Update the table with a new patient
+INSERT INTO kpi_drug_infusion (patient_name, drug_name, pain_reduction_score, success_rate, adverse_events, insurance_name, prior_authorization_needed, reimbursement_received, reimbursement_time, start_date_of_service)
+	VALUES ("Harry Potter", "Morphine", 7, 95, 1, "Cigna", "False", "True", 89, '2024-3-24');
+
+--Display average number of days lapsed from when the pharmacy submitted claims to when reimbursement was received by each insurance.
+SELECT AVG(reimbursement_time)
+	FROM kpi_drug_infusion
+	WHERE insurance_name = 'Aetna';
+
+--Display average number of days lapsed from when the pharmacy submitted claims to when reimbursement was received for every insurance in ascending order.
+SELECT prior_authorization_needed, insurance_name, COUNT(*) 
+	FROM kpi_drug_infusion
+	GROUP BY insurance_name
+	ORDER BY prior_authorization_needed DESC;
 
 
 
