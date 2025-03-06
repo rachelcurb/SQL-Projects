@@ -34,7 +34,7 @@ CREATE TABLE kpi_drug_infusion (
     prior_authorization_needed TEXT,
     reimbursement_received TEXT,
     reimbursement_time INT,
-    start_date_of_service  TEXT);
+    start_date_of_service  DATETIME);
 
 --Display patients that are covered under Aetna. The insurance name can be replaced as needed when using this query.
 SELECT Name, insurance_name 
@@ -53,6 +53,26 @@ SELECT COUNT(*) insurance_name, reimbursement_received
     FROM kpi_drug_infusion 
     WHERE insurance_name = 'Aetna' 
     GROUP BY reimbursement_received;
+
+--(Alternative to above?)
+SELECT reimbursement_received, COUNT(*)
+		FROM kpi_drug_infusion
+    WHERE insurance_name = 'Aetna'
+		GROUP BY reimbursement_received;
+
+--Display the order of when patients started on service from earliest to latest
+ SELECT patient_name, start_date_of_service
+   FROM kpi_drug_infusion
+   ORDER BY start_date_of_service;
+
+--Display how many patients that the pharmacy received reimbursement for from Aetna
+ SELECT COUNT(reimbursement_received)
+   FROM kpi_drug_infusion
+   WHERE reimbursement_received = 'True' AND insurance_name = 'Aetna';
+
+--Update the table with a new patient.
+NSERT INTO kpi_drug_infusion (patient_name, drug_name, pain_reduction_score, success_rate, adverse_events, insurance_name, prior_authorization_needed, reimbursement_received, reimbursement_time, start_date_of_service)
+VALUES ("Harry Potter", "Morphine", 7, 95, 1, "Cigna", "False", "True", 89, '2024-3-24');
 
 
 
