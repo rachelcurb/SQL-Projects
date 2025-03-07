@@ -23,13 +23,16 @@ start_date_of_service      datetime
 
 
 **NOTE: For each query below, the name of the insurance (insurance_name) can be replaced with any of the ones listed below:
-Insurance names:
 	'Cigna'
 	'Blue Cross Blue Shield'
 	'Meritain'
 	'United Healthcare'
 	'Aetna'
 	'Humana'
+
+--Query to display all insurance names:
+	SELECT DISTINCT insurance_name FROM kpi_drug_infusion;
+
 'Aetna' has been chosen for every example.
 
 --Create a table for KPI at a pain management pharmacy:
