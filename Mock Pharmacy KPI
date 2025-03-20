@@ -1,6 +1,8 @@
+FIND dataset here: https://www.kaggle.com/datasets/rache2o/pharmacy-mock-kpi
+
+
 --This table uses mock data that emulates key performance indicators for a pain management pharmacy. 
 This pharmacy can use this table to analyze and answer questions such as which insurance takes the longest to reimburse and which insurances usually require prior authorization. It includes a patient's name, their patient ID, drug name, pain reduction score, success rate, adverse events, their insurance name, if their insurance required prior authorization, if reimbursement was received, reimbursement time, and their start date of service.
-
 
 
 --Table Schema:
