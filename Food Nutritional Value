@@ -8,3 +8,27 @@ SELECT food, MAX(caloric_value) AS caloric_value
   FROM food_dataset 
   GROUP BY food, caloric_value
   ORDER BY caloric_value DESC;
+
+--Isolate one food and display all nutritional value (food name can be replaced when using the same query):
+SELECT * FROM food_dataset WHERE food='tortilla';
+
+--Display foods listed that are oils with its complete nutrional values sorted by lowest caloric value:
+SELECT * FROM food_dataset
+  WHERE food LIKE '%oil'
+  ORDER BY caloric_value;
+
+--Display top 10 foods with the highest Monounsaturated fats:
+SELECT food, monounsaturated_fats FROM food_dataset
+  ORDER BY Monounsaturated_fats DESC
+  LIMIT 10;
+
+--Display foods with Monounsaturated fat greater than 7:
+SELECT food, monounsaturated_fats FROM food_dataset
+  WHERE Monounsaturated_fats>7
+  ORDER BY Monounsaturated_fats DESC;
+
+--Display number of foods that have zero carbohydrates:
+SELECT COUNT(food), carbohydrates
+  FROM food_dataset
+  WHERE carbohydrates=0
+  GROUP BY carbohydrates;
