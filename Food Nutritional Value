@@ -32,3 +32,15 @@ SELECT COUNT(food), carbohydrates
   FROM food_dataset
   WHERE carbohydrates=0
   GROUP BY carbohydrates;
+
+--Based on this table, a dietician has a patient that is allergic to potatoes. The query below displays the table exluding potatoes:
+SELECT * FROM food_dataset
+  WHERE food NOT LIKE '%potato%' OR '%potatoes%';
+
+--The dietician wants to present a list of foods to the same patient that exlcudes potatoes and is sorted by foods with the highest protein. The query below lists 20 foods with the highest protein and excludes potatoes:
+SELECT * FROM food_dataset
+  WHERE food NOT LIKE '%potato%' OR '%potatoes%'
+  ORDER BY protein DESC
+  LIMIT 20;
+
+
