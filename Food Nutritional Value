@@ -1,0 +1,8 @@
+--Display entire table:
+SELECT * FROM food_dataset;
+
+--Display complete list of foods sorted from the highest caloric value:
+SELECT food, MAX(caloric_value) AS caloric_value
+  FROM food_dataset 
+  GROUP BY food, caloric_value
+  ORDER BY caloric_value DESC;
