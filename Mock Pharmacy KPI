@@ -1,9 +1,5 @@
 --This table uses mock data that emulates key performance indicators for a pain management pharmacy. 
-This pharmacy can use this table to analyze and answer questions such as which insurance takes the longest to reimburse and
-which insurances usually require prior authorization.
-  It includes a patient's name, their patient ID, drug name, pain reduction score, success rate, adverse events, 
-their insurance name, if their insurance required prior authorization, if reimbursement was received, reimbursement time,
-and their start date of service.
+This pharmacy can use this table to analyze and answer questions such as which insurance takes the longest to reimburse and which insurances usually require prior authorization. It includes a patient's name, their patient ID, drug name, pain reduction score, success rate, adverse events, their insurance name, if their insurance required prior authorization, if reimbursement was received, reimbursement time, and their start date of service.
 
 
 
@@ -29,11 +25,12 @@ start_date_of_service      datetime
 	'United Healthcare'
 	'Aetna'
 	'Humana'
-
---Query to display all insurance names:
-	SELECT DISTINCT insurance_name FROM kpi_drug_infusion;
-
 'Aetna' has been chosen for every example.
+
+
+
+--Display all insurance names:
+	SELECT DISTINCT insurance_name FROM kpi_drug_infusion;
 
 --Create a table for KPI at a pain management pharmacy:
 CREATE TABLE kpi_drug_infusion (
