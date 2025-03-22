@@ -1,5 +1,10 @@
 FIND dataset here: https://www.kaggle.com/datasets/utsavdey1410/food-nutrition-dataset
 
+This file uses dataset from u/utsavdey at Kaggle and provides detailed nutritional values for various types of foods and food items. It provides extensive macro and micronutrient details for each food listed.
+The purpose of this file is to demonstrate and showcase my skills in SQL to isolate data, analyze, and answer potential questions that a user of this dataset could have.
+
+
+
 --Display entire table:
 SELECT * FROM food_dataset;
 
