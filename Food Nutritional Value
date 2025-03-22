@@ -48,4 +48,9 @@ SELECT * FROM food_dataset
   ORDER BY protein DESC
   LIMIT 20;
 
+--A user needs to know the caloric intake of an arepa with avocado oil. The query below shows the total caloric value shown as 'total_calories':
+SELECT SUM(caloric_value) AS total_calories
+  FROM food_dataset
+  WHERE food='arepa' OR 'avocado oil';
+
 
