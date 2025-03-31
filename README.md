@@ -5,4 +5,5 @@ This page contains projects that help to showcase my skills in SQL (Structured Q
 For these projects, I chose MySQL as the main relational database management system to demonstrate my knowledge of commands and queries.
 
 ## Project list ##
-1. Mock Pharmacy KPI: 
+1. **Mock Pharmacy KPI:** This  table can be used to analyze and answer questions such as which insurance takes the longest to reimburse and which insurances usually require prior authorization. It includes a patient's name, their patient ID, drug name, pain reduction score, success rate, adverse events, their insurance name, if their insurance required prior authorization, if reimbursement was received, reimbursement time, and their start date of service.
+2. 
